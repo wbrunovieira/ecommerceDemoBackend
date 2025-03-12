@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "sourceMap": true,
+        "paths": {
+            "@/*": ["src/*"],
+            "@test/*": ["test/*"]
+        },
+        "types": ["vitest/globals"]
+    },
+   "include": ["src/**/*", "test/**/*", "vitest.config.ts", "vitest.config.e2e.ts"]
+}

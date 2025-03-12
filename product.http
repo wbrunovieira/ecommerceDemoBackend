@@ -1,0 +1,195 @@
+
+@BASE_URL = https://api.styloslingerie.com.br/api
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
+}
+
+
+###
+
+
+
+# @name create-products
+POST {{BASE_URL}}/products
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "name": "blusa testes6",
+  "description": "calcinha description 1 mais texto, legal, muiito legal" ,
+  "images": ["/images/foto1.jpg"],
+ "productCategories": ["fde0cc9e-076e-4082-b15d-0647b2ade093"],
+  "brandId": "fc3d91eb-1198-49d6-9017-fbf9179d1737",
+  "sku":"12121212aa",
+  "price": 100,
+  "stock": 10,
+  "height":11,
+  "width":17,
+  "length":11,
+  "weight":0.3
+ 
+    
+}
+
+
+###
+
+# @name add-category-to-product
+POST {{BASE_URL}}/products/add-categories/1dd451a5-fdef-4e1a-b988-0a5090845571
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "categories": ["02ef4079-963a-4d92-849d-eae7a1cc41d3", "04be678e-df6d-43bb-b82b-f1c06648bac0"]
+}
+
+
+###
+ "productColors": ["247b00b5-0b96-4713-a17c-8d05cf89fead"],
+  "productCategories": ["fde0cc9e-076e-4082-b15d-0647b2ade093"],
+  "productSizes": [ "f4051ddb-e807-4f8f-8f50-6f3f06d7795d"]
+###
+
+
+# @name get-all-products
+GET {{BASE_URL}}/products/all
+Content-Type: application/json
+
+
+
+###
+
+
+# @name edit-products
+PUT {{BASE_URL}}/products/save/c022b6ef-9c8e-41a8-8555-9d7d4ef44c1c
+Content-Type: application/json
+
+{
+  "name": "010045 SUTIA B LARGA REG updated19"
+
+}
+
+###
+   "description": "DescriptionNotFound 5",
+   "brandId": "00e92aee-a6bf-44d3-a35c-d77a952a8994",
+   "brandName": "PLIE",
+   "discount": 10,
+   "price": 90,
+   "height": 15,
+     "width": 15,
+      "length": 15,
+      "weight": 15,
+      "onSale": false,
+      "isFeatured": true,
+      "showInSite": true,
+      "images": [
+        "http://localhost:3000/public/images/LogoStylos.svg"
+      ],
+      "stock": 100,
+       "sku": "default-sku",
+       "erpId": "teste"
+   "onSale":true,
+  "stock": 50,
+  "erpId": "some-erp-id",
+ "images": ["image1.png", "image2.png"]
+
+# @name edit-products-variants
+PATCH {{BASE_URL}}/products/update/variant/2fac9f52-b6a2-4677-a6e4-dfa15ecccd5d
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+{
+  "sku": "new-sku",
+  "stock": 10,
+  "price": 10030,
+  "images": ["image1.jpg", "image2.jpg"],
+  "status": "ACTIVE"
+}
+
+
+###
+
+# @name get-product-featured
+GET {{BASE_URL}}/products/featured-products
+Content-Type: application/json
+
+
+###
+
+# @name delete-product
+DELETE {{BASE_URL}}/products/c022b6ef-9c8e-41a8-8555-9d7d4ef44c1c
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+# @name get-product-by-id
+GET {{BASE_URL}}/products/a5af81cc-e30a-4ce3-8437-1b90a285dc41
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+
+###
+# @name get-product-by-categoryId
+GET {{BASE_URL}}/products/category/1b60b886-ab70-498a-a170-7fefae478fee
+Content-Type: application/json
+
+###
+# @name get-product-by-colorId
+GET {{BASE_URL}}/products/color/30f0c025-ded7-4db6-8d33-1b1c51da1a79
+Content-Type: application/json
+
+###
+# @name get-product-by-sizeId
+GET {{BASE_URL}}/products/size/2d72f278-cc95-45bc-b3be-70c78168f771
+Content-Type: application/json
+
+
+###
+# @name get-product-by-price-range
+GET {{BASE_URL}}/products/price-range?minPrice=50&maxPrice=100
+Content-Type: application/json
+
+
+
+###
+# @name get-product-by-brandId
+GET {{BASE_URL}}/products/brand/00e92aee-a6bf-44d3-a35c-d77a952a8994
+Content-Type: application/json
+
+
+###
+# @name get-product-by-category
+GET {{BASE_URL}}/products/category/56daa69a-04b5-497c-b127-28d2e1ab1809
+Content-Type: application/json
+
+###
+
+
+# @name get-product-by-slug
+GET {{BASE_URL}}/products/slug/0108001-sutia-nadador-2b7a8e1b-f2f1-44db-b918-7a254f4b7e0b-1732655978311
+
+
+###
+
+# @name get-product-by-slug
+GET {{BASE_URL}}/products/slug/0108001-sutia-nadador-2b7a8e1b-f2f1-44db-b918-7a254f4b7e0b-1732655978311
+
+
+
+###
+
+# @name get-product-by-name
+GET {{BASE_URL}}/products/search?name=calc
+Content-Type: application/json
+
+###

@@ -1,0 +1,14 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile.prod
+        container_name: stylos_app_prod
+        environment:
+            - NODE_ENV=production
+            - AWS_REGION=us-east-1
+        volumes:
+            - ./data:/data
+        ports:
+            - "3333:3333"
+        command: ["/app/load-ssm-env.sh", "node", "/app/dist/main.js"]

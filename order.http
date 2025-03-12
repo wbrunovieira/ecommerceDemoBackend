@@ -1,0 +1,76 @@
+@BASE_URL = https://wbstylosbackend.sa.ngrok.io
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+# @name authenticate
+POST {{BASE_URL}}/sessions/
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
+}
+
+###
+
+# @name get-top-selling-products-by-value
+GET {{BASE_URL}}/orders/top-selling-products-by-value
+Content-Type: application/json
+
+
+###
+###
+
+# @name get-top-selling-categories-by-value
+GET {{BASE_URL}}/orders/top-selling-categories-by-value
+Content-Type: application/json
+
+
+###
+###
+
+# @name get-top-selling-brands-by-value
+GET {{BASE_URL}}/orders/top-selling-brands-by-value
+Content-Type: application/json
+
+
+###
+###
+
+# @name get-orders-by-brand
+GET {{BASE_URL}}/orders/brand/e472a2a9-aa71-46d8-9d88-8f7da646f632
+Content-Type: application/json
+
+
+###
+###
+
+# @name get-orders-by-category
+GET {{BASE_URL}}/orders/category/04dc0854-8fa8-4e1a-89de-e072f8899988
+Content-Type: application/json
+
+
+###
+###
+
+# @name get-orders-by-product
+GET {{BASE_URL}}/orders/product/155d83d6-3ed1-479c-8c92-4fe26e3d566d
+Content-Type: application/json
+
+
+###
+# @name get-orders-all
+GET {{BASE_URL}}/orders/all?
+Content-Type: application/json
+
+
+###
+
+# @name get-order-by-user
+GET {{BASE_URL}}/orders/user/0e57489a-1f0a-422d-8549-59b40ca3ca8d
+Content-Type: application/json
+
+###
+
+# @name get-orders-by-id
+GET {{BASE_URL}}/orders/order/03778804-2d60-4edc-914d-058b8d72c809
+Content-Type: application/json

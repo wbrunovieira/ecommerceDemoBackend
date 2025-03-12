@@ -1,0 +1,116 @@
+@BASE_URL = http://localhost:3333
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "brunao@bruno.com",
+  "password": "123456aA@"
+}
+
+
+###
+# @name get-all-products
+GET {{BASE_URL}}/products
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+###
+# @name create-cart
+POST {{BASE_URL}}/cart
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+    "userId": "83c04c19-a9be-4db9-b9e6-51460fbd1644",
+    "items": [
+
+        #   {
+        #     "productId": "1e3ca1c8-b1f1-4b60-9033-e18fffd96c21",
+        #     "quantity": 2,
+        #     "price": 112.00,
+        #     "colorId": "preto",
+        #     "sizeId":"g"
+        # }
+
+        {
+            "productId": "e9947ee2-746e-497b-bb96-3b0f65faa04e",
+            "quantity": 6,
+            "price": 191.36,
+            "hasVariants": false,
+            "height": 10,
+            "length": 21,
+            "weight": 6.5,
+            "width":18
+        }
+      
+          ]
+}
+
+
+###
+
+# @name add-item-cart
+POST {{BASE_URL}}/cart/add-item/799a657b-45c2-4c1e-82d4-7cc0bc9515a0
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+    "productId": "c2d0b703-af33-4385-811c-87eb815d5ce4",
+    "quantity": 1,
+    "price": 204,
+    "height": 14,
+    "width": 16,
+    "length": 27,
+    "weight": 1.5,
+    "hasVariants": false
+  
+
+}
+
+###
+
+# @name update-qtd-item-cart
+PATCH {{BASE_URL}}/cart/de3e7aec-d7f9-4de7-8e73-1269faf99ed4/item/f8453dbe-6bb9-41aa-b9cb-a3872da4d2f5 
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+   
+    "quantity": 10
+  
+  
+
+}
+
+
+###
+# @name check-cart-exist
+GET {{BASE_URL}}/cart/82e87865-6ca8-46c9-887c-a883f1723624/exists
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+
+###
+# @name get-the-cart-by-userId
+GET {{BASE_URL}}/cart/user/799a657b-45c2-4c1e-82d4-7cc0bc9515a0
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+
+###
+# @name delete-item-cart
+DELETE {{BASE_URL}}/cart/5a84e2e5-c44c-4dfe-bf2d-7891af38cfdf/item/be001df2-bfe5-416f-b1b6-93d53762dc46
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+
+###
+

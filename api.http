@@ -1,0 +1,146 @@
+#@BASE_URL = https://wbstylosbackend.sa.ngrok.io
+@BASE_URL = https://styloslingerie.com.br/api
+@token = "65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD"
+
+###
+
+# @name migration
+GET {{BASE_URL}}/migration/run
+Content-Type: application/json
+
+###
+
+
+# @name get-all-supplier
+GET {{BASE_URL}}/api/fetch-suppliers
+Content-Type: application/json
+
+
+###
+
+
+# @name all-products-save
+GET {{BASE_URL}}/api/fetch-and-save
+Accept: application/json
+Content-Type: application/json
+
+###
+
+
+# @name create-categories-from-api
+GET {{BASE_URL}}/api/sync-categories
+Accept: application/json
+Content-Type: application/json
+
+###
+
+# @name create-color-and-size-from-api
+GET {{BASE_URL}}/api/sync-attributes
+Accept: application/json
+Content-Type: application/json
+
+###
+
+
+# @name all-products
+https://connectplug.com.br/api/v2/product?page=101
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+# @name product-stock
+GET https://connectplug.com.br/api/v2/product-stock-balance/
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+# @name all-products-atributes
+GET https://connectplug.com.br/api/v2/product-attribute
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+
+# @name all-products-stock
+GET https://connectplug.com.br/api/v2/product-stock-balance/4968
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+# @name show-product-suplyer
+GET https://connectplug.com.br/api/v2/product/4968/supplier
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+# @name show-product-attribute-by-id
+GET https://connectplug.com.br/api/v2/product-attribute/4968
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+
+###
+
+# @name show-product-attribute-all
+GET https://connectplug.com.br/api/v2/product-attribute
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+# @name show-atributes-and-stock
+GET https://connectplug.com.br/api/v2/product-stock-balance/4968
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+# @name show-atributes-s3
+https://connectplug.com.br/api/v2/product?page=20
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+###
+
+
+# @name show-product-category-all
+GET https://connectplug.com.br/api/v2/product-category
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+
+###
+###
+
+
+# @name show-product-attribute-option-component
+GET https://connectplug.com.br/api/v2/attribute-option-component/4968
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+
+
+###
+
+# @name show-product-category-all
+GET https://connectplug.com.br/api/v2/product-category/2
+
+Accept: application/json
+Content-Type: application/json
+Authorization: 65d3bc42ea3d7-8052265b337c9144768ddc1bded35f2f-amTP6Vio44e8GQfDD
+

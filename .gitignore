@@ -1,0 +1,102 @@
+# compiled output
+/dist
+/node_modules
+/build
+
+ngrok.yml
+
+mercadoPago.md
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+private_key.pem
+public_key.pem
+
+commands.md
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+main.tf
+
+data
+commands.md
+*.pem
+*.key
+
+#ansible
+ansible-config/group_vars/all.yml
+ansible-config/admin_ssh_key
+ansible-config/admin_ssh_key.public_key
+ansible-config/stylos.pem
+ansible-config/--start-at-task
+ansible-config/secrets.yml
+secrets.yml
+.vault-password
+ansible-config/.vault-password
+
+group_vars/*
+host_vars/*
+*.retry
+*.log
+tmp/
+debug.txt
+
+fresh-clone/
+
+#terraform
+terraform/terraform.tfvars
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# dotenv environment variable files
+.env
+.env.development
+.env.test.local
+.env.production
+.env.local
+.env.prod
+.env.dev
+
+# temp directory
+.temp
+.tmp
+
+
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+

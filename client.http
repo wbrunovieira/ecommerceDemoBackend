@@ -1,0 +1,139 @@
+@BASE_URL = http://localhost:3333
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "wbrunovieira@yahoo.com.br",
+  "password": "123456aA@"
+}
+
+# {
+#   "email": "admin@example.com",
+#   "password": "Adminpassword@8"
+# }
+
+###
+# @name get-uri-melhor-envio
+GET {{BASE_URL}}/sessions/melhor-envio/auth-url
+Content-Type: application/json
+
+###
+# @name authenticate-melhor-envio
+POST {{BASE_URL}}/sessions/request-token
+Content-Type: application/json
+
+{
+  "grant_type": "authorization_code",
+  "client_id": "YOUR_CLIENT_ID",
+  "client_secret": "YOUR_CLIENT_SECRET",
+  "redirect_uri": "YOUR_REDIRECT_URI",
+  "code": "AUTHORIZATION_CODE"
+}
+
+
+###
+
+
+# @name create-account
+POST {{BASE_URL}}/accounts
+Content-Type: application/json
+
+{
+  "name": "Walter Bruno Prado Vieira",
+  "email": "wbrunovieira@yahoos.com.br",
+  "password":"123456aA@"
+}
+
+###
+
+
+
+# @name update-account
+PUT  {{BASE_URL}}/accounts/edit/8e30f012-2ce4-4c78-a8bf-7e5396874b1a
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "email":"brunao2@bruno.com",
+  "phone": "1193333333333",
+  "gender": "masculino",
+  "profileImageUrl": "url teste",
+  "birthDate":"12/2/2002"
+  
+}
+
+###
+# @name delete-account
+DELETE {{BASE_URL}}/accounts/a7d4c26c-6188-48e2-90c3-f4208ff1d8f7
+Content-Type: application/json
+
+
+###
+###
+# @name get-account-by-id
+GET {{BASE_URL}}/accounts/8e30f012-2ce4-4c78-a8bf-7e5396874b1a
+Content-Type: application/json
+
+
+###
+###
+# @name verify-email
+GET {{BASE_URL}}/accounts/verify/yhn5xpv2h2q 
+Content-Type: application/json
+
+
+###
+
+# @name create-account-google
+POST {{BASE_URL}}/accounts/google
+Content-Type: application/json
+
+{
+  "name": "bruno",
+  "email": "brunogmdaddifld@bruno.com",
+  "googleUserId": "123456",
+  "profileImageUrl": "https://www.google.com.br"
+}
+
+
+###
+
+# @name check-if-email-exists
+POST {{BASE_URL}}/accounts/check
+Content-Type: application/json
+
+{
+  "email": "wbrunovieira@yahoo.com.br"
+}
+
+
+
+###
+# @name get-all-accounts
+GET {{BASE_URL}}/accounts?page=1
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+
+###
+# @name create-address
+POST {{BASE_URL}}/users/97c1a315-85c2-43e8-98fe-432600797bec/addresses
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "userId": "97c1a315-85c2-43e8-98fe-432600797bec",
+  "street": "Av. Paulista",
+  "number": 1234,
+  "complement": "Apto 56",
+  "city": "São Paulo",
+  "state": "SP",
+  "country": "Brasil",
+  "zipCode": "01311-200"
+}

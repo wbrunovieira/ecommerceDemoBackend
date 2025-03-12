@@ -1,0 +1,80 @@
+@BASE_URL = https://api.styloslingerie.com.br/api
+
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
+}
+
+###
+
+# @name create-category
+POST {{BASE_URL}}/category
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "name": "category teste 90",
+   "imageUrl": "https://stylos-images-bucket.s3.amazonaws.com/no-photos.svg",
+"erpId": "20000"
+  
+}
+
+###
+
+# @name get-category-by-name
+GET  {{BASE_URL}}/category?name=category 2
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+# @name delete-category
+Delete  {{BASE_URL}}/category/84f4d873-5af4-453d-85d3-a1f26a01ee65
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+###
+
+# @name find-category-by-id
+GET  {{BASE_URL}}/category/1a26dfa3-83f9-4d9b-bf94-d47224614326
+
+Content-Type: application/json
+
+###
+
+
+# @name get-category-all
+GET {{BASE_URL}}/category/all?page=1&pageSize=80
+Content-Type: application/json
+###
+
+
+# @name get-category-all-withProducts
+GET {{BASE_URL}}/category/all-withProducts?page=1&pageSize=80
+Content-Type: application/json
+
+
+
+###
+
+# @name edit-brand
+PUT  {{BASE_URL}}/category/9a4fa308-aa8b-4b40-8694-c5cee1277f75
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+{
+  "name": "category 2",
+  "imageUrl": "/icons/pijamas-mini.svg"
+
+  }
+
+
+
+
+

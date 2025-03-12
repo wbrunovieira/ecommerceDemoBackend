@@ -1,0 +1,65 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        container_name: ecommerce_app_dev
+        env_file:
+            - .env.development
+        environment:
+            NODE_ENV: development
+        volumes:
+            - ./src:/app/src
+            - ./prisma:/app/prisma
+            - ./src/infra/database/scripts:/app/scripts
+            - ./test:/app/test
+            - ./.env.dev:/app/.env.dev
+
+        ports:
+            - "3333:3333"
+
+        depends_on:
+            db:
+                condition: service_healthy
+        command: >
+            sh -c "
+            echo 'Aguardando o banco de dados ficar pronto...';
+            while ! nc -z db 5432; do
+              sleep 1;
+            done;
+            echo 'Banco de dados pronto!';
+            sleep 3;
+            npx prisma generate &&
+            npx prisma migrate deploy &&
+            npm run seed &&
+            sleep 5 &&
+            npm run start:dev
+            "
+        networks:
+            - backend
+
+    db:
+        image: postgres:16
+        container_name: ecommerce_db_prisma
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: docker
+            POSTGRES_DB: ecommerce_db_prisma
+            PGDATA: /data/postgres
+        volumes:
+            - ./data/pg:/data/postgres
+            - ./logs/db:/var/log/postgresql
+        networks:
+            - backend
+        healthcheck:
+            test: ["CMD", "pg_isready", "-U", "postgres"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        restart: unless-stopped
+
+networks:
+    backend:
+        driver: bridge

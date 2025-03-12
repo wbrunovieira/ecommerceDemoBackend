@@ -1,0 +1,71 @@
+#@BASE_URL = https://wbstylosbackend.sa.ngrok.io
+@BASE_URL = https://styloslingerie.com.br/api
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+# @name authenticate
+POST {{BASE_URL}}/sessions/
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
+}
+
+### 
+
+# @name create-color
+POST {{BASE_URL}}/colors
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "name": "black2",
+  "hex":"#000",
+  "erpId": "1000"
+}
+
+###
+
+# @name find-colors-by-name
+GET  {{BASE_URL}}/colors?name=red
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+# @name delete-colors
+Delete  {{BASE_URL}}/colors/3cb3b561-61d4-48b9-b4b7-1a6355a23f34
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+# @name find-color-by-id
+GET  {{BASE_URL}}/colors/d1f4f8e2-d580-4f5c-ae75-e5df1648d409
+Content-Type: application/json
+
+###
+
+
+
+# @name get-colors-all
+GET {{BASE_URL}}/colors/all?page=1&pageSize=80
+Content-Type: application/json
+
+
+###
+
+# @name edit-color
+PUT  {{BASE_URL}}/colors/02791a4f-3e71-4eda-8b0d-c56551c76acb
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "name": "vermelhinho",
+  "hex":"#690000"
+  
+}
+
+
+
+

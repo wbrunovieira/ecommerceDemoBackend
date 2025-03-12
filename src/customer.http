@@ -1,0 +1,51 @@
+@BASE_URL =  https://wbstylosbackend.sa.ngrok.io
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
+}
+
+
+###
+
+
+# @name list-all-customer
+GET {{BASE_URL}}/customers/all
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+
+
+###
+
+
+# @name find-customer-byId
+GET {{BASE_URL}}/customers/:id
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+
+
+###
+
+###
+
+
+# @name find-customer-byId
+POST {{BASE_URL}}/customers/create
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+
+
+###
+

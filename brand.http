@@ -1,0 +1,84 @@
+@BASE_URL = https://styloslingerie.com.br/api
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
+}
+
+###
+
+# @name create-brand
+POST {{BASE_URL}}/brands
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "name": "Brand for testess",
+  "imageUrl": "/icons/no-photos.svg",
+  "erpId":"10000"
+  
+}
+
+###
+
+# @name get-brands
+GET  {{BASE_URL}}/brands
+Content-Type: application/json
+
+
+###
+
+# @name delete-brands
+Delete  {{BASE_URL}}/brands/270d50a6-1f97-43e1-96b7-8e909a67cf79
+Content-Type: application/json
+
+###
+
+# @name find-brands-by-name
+GET  {{BASE_URL}}/brands/name?name=PLIE
+Content-Type: application/json
+
+
+
+###
+# @name get-brands-all
+GET {{BASE_URL}}/brands/all?page=1&pageSize=10
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+###
+
+# @name delete-brands
+Delete  {{BASE_URL}}/brands/0a808470-4977-412a-a9a4-521aca95e84f
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+# @name find-brand-by-id
+GET  {{BASE_URL}}/brands/0a808470-4977-412a-a9a4-521aca95e84f
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+# @name edit-brand
+PUT  {{BASE_URL}}/brands/ad7be056-f43d-45c5-8ddd-93da748da4ea
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "name": "brand 4",
+  "imageUrl": "/icons/logo-nayne.jpeg"
+  
+}
+
+
+
+

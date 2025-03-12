@@ -1,0 +1,54 @@
+FROM node:20-buster-slim AS builder
+
+WORKDIR /app
+COPY package*.json ./
+COPY tsconfig*.json ./
+COPY nest-cli.json ./
+
+COPY load-ssm-env.sh ./load-ssm-env.sh
+
+ENV NODE_OPTIONS="--max-old-space-size=2048"
+ENV NODE_ENV=production
+
+RUN npm install
+COPY . .
+
+
+RUN find /app -type f \( -name "*.spec.ts" -o -name "*.test.ts" -o -name "*.e2e-spec.ts" \) -exec rm -f {} + && echo "Arquivos de teste excluídos"
+RUN echo "Verificação do diretório /app após exclusão dos testes:" && ls -R /app
+
+RUN npx prisma generate
+RUN npm run build
+RUN npm prune --production
+
+
+FROM node:20-buster-slim
+
+RUN apt-get update && apt-get install -y curl unzip ca-certificates postgresql-client --no-install-recommends && \
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip && \
+    rm -rf /var/lib/apt/lists/*
+
+
+RUN curl -sSfL -o /usr/local/bin/ssm-env https://github.com/remind101/ssm-env/releases/download/v0.0.5/ssm-env && \
+    echo "babf40382bcd260f0d8d4575a32d5ec33fb08fefd29f12ffd800fbe738c41021  /usr/local/bin/ssm-env" | sha256sum -c - && \
+    chmod +x /usr/local/bin/ssm-env && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /app /app
+
+ENV AWS_REGION=us-east-1
+
+
+RUN npm install -g @nestjs/cli ts-node
+
+RUN chmod +x /app/load-ssm-env.sh
+
+EXPOSE 3333
+
+
+ENTRYPOINT ["/app/load-ssm-env.sh"]
+
+CMD ["node", "/app/dist/main.js"]

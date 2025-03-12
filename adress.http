@@ -1,0 +1,70 @@
+@BASE_URL = http://localhost:3333
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "brunao@bruno.com",
+  "password": "123456aA@"
+}
+
+###
+
+# @name create-adress
+POST {{BASE_URL}}/adress/0e57489a-1f0a-422d-8549-59b40ca3ca8d/addresses
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "userId": "0e57489a-1f0a-422d-8549-59b40ca3ca8d",
+  "street": "Rua de aqui mesmo essa e outa" ,
+  "number": 20,
+  "complement": "Bloco de cima ap 222",
+  "city": "Barueri",
+  "state":"SP",
+  "country": "Brasil",
+  "zipCode": "06050-100"
+   
+}
+
+###
+
+
+# @name get-adress-by-userId
+GET {{BASE_URL}}/adress/by-user-id?userId=d5b8f38e-fc63-43f7-8ff6-7258347287e7
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "userId": "d5b8f38e-fc63-43f7-8ff6-7258347287e7"
+  
+}
+
+###
+
+# @name delete-adress
+DELETE {{BASE_URL}}/adress/addresses/8d103c78-e8a7-4cdd-9570-cce1a0f8f433
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+###
+
+# @name edit-adress
+PUT {{BASE_URL}}/adress/d5b8f38e-fc63-43f7-8ff6-7258347287e7/addresses/8d103c78-e8a7-4cdd-9570-cce1a0f8f433
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "userId": "d5b8f38e-fc63-43f7-8ff6-7258347287e7",
+  "street": "Rua de aqui mesmo nao era nao" ,
+  "number": 3000,
+  "complement": "Bloco de cima ap 222",
+  "city": "Osasco",
+  "state":"SP",
+  "country": "Brasil",
+  "zipCode": "06050"
+   
+}

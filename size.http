@@ -1,0 +1,69 @@
+@BASE_URL = https://wbstylosbackend.sa.ngrok.io
+
+@AUTH_TOKEN = {{authenticate.response.body.access_token}}
+
+
+# @name authenticate
+POST {{BASE_URL}}/sessions
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
+}
+
+###
+
+# @name create-size
+POST {{BASE_URL}}/size
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+{
+  "name": "pequena",
+  "erpId":"1000"
+}
+
+###
+
+# @name get-size
+GET  {{BASE_URL}}/size
+Content-Type: application/json
+
+###
+
+# @name delete-size
+Delete  {{BASE_URL}}/size/022220c0-2995-4e31-8a53-c52fa5c683f4
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+
+###
+
+# @name find-size-by-id
+GET  {{BASE_URL}}/size/510433f1-6eb0-43e9-96bb-1f75ab5f65e1
+Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+# @name edit-size
+PUT  {{BASE_URL}}/size/88864ced-ec77-4034-a728-4519e71943f4
+Content-Type: application/json
+
+{
+  "name": "G"
+  
+}
+
+
+###
+# @name get-size-all
+GET {{BASE_URL}}/size/all?page=1&pageSize=80
+Content-Type: application/json
+
+
+
+
+
+

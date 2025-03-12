@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "removeComments": true,
+        "sourceMap": false
+    },
+    "exclude": [
+        "src/**/*.spec.ts",
+        "src/**/*.test.ts",
+        "src/**/*.e2e-spec.ts",
+        "test",
+        "**/*.test.ts",
+        "**/*.spec.ts"
+      ]
+    }

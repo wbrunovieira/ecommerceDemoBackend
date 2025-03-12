@@ -1,0 +1,33 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#540002", // Fundo mais escuro para a atividade
+        "activityBar.background": "#540002", // Fundo escuro para o back
+        "activityBar.foreground": "#F0B1CC", // Texto de destaque em tom claro
+        "activityBar.inactiveForeground": "#F0B1CC99", // Ícones inativos mais suaves
+        "activityBarBadge.background": "#a63955", // Badge em tom mais escuro
+        "activityBarBadge.foreground": "#e7e7e7", // Texto no badge claro
+        "commandCenter.border": "#F0B1CC99", // Borda do centro de comando suave
+        "sash.hoverBorder": "#540002", // Borda de destaque mais escura
+        "statusBar.background": "#7c3d3d", // Barra de status em tom escuro
+        "statusBar.foreground": "#e4e4e4", // Texto da barra de status claro
+        "statusBarItem.hoverBackground": "#1a1a1a", // Background de hover escuro
+        "statusBarItem.remoteBackground": "#7c3d3d", // Barra de status remota escura
+        "statusBarItem.remoteForeground": "#e4e4e4", // Texto na barra remota claro
+        "titleBar.activeBackground": "#7c3d3d", // Fundo da title bar mais escuro
+        "titleBar.activeForeground": "#e4e4e4", // Texto da title bar claro
+        "titleBar.inactiveBackground": "#7c3d3d99", // Fundo inativo escuro
+        "titleBar.inactiveForeground": "#e4e4e4" // Texto inativo claro
+    },
+
+    "files.autoSave": "onWindowChange",
+
+    "editor.codeActionsOnSave": {},
+
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "yaml.format.enable": true,
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": ".github/workflows/*"
+    },
+    "ansible.python.interpreterPath": "/bin/python3"
+}

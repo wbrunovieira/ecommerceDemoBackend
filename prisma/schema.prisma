@@ -1,0 +1,379 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(uuid())
+  name            String
+  email           String    @unique
+  password        String
+  profileImageUrl String?
+  googleUserId    String?
+  isGoogleUser    Boolean?
+  role            String
+  phone                String?
+  birthDate            DateTime?
+  gender               String? 
+  lastLogin            DateTime?
+  accountStatus        String? 
+  isVerified    Boolean  @default(false)
+  isCustomer      Boolean   @default(false)
+  customer        Customer?
+  shippings       Shipping[]
+  marketingPreferences Json? 
+  addresses       Address[]
+  carts           Cart[]
+  archivedCarts   ArchivedCart[] 
+  orders   Order[]
+  verificationToken String? 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Customer {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  firstOrderDate DateTime? 
+  customerSince  DateTime @default(now())
+  orders         Order[]  
+
+  @@map("customer")
+}
+
+
+model Product {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  description String
+  productColors ProductColor[]
+  productSizes ProductSize[]
+  productCategories  ProductCategory[]
+  
+  productIdVariant  String? 
+  
+  slug        String        @unique 
+  brandId     String
+  brand       Brand?        @relation(fields: [brandId], references: [id])
+  discount    Float?        @default(0)
+  price       Float
+  finalPrice  Float?
+  height      Float
+  width       Float
+  length      Float
+  weight      Float
+  erpId      String?
+  sku         String?
+  upc         String?
+  tags        String[]
+  seoTitle          String?
+  seoDescription    String?
+  seoKeywords       String?
+  visibility        Boolean             @default(true)
+  status      ProductStatus   @default(ACTIVE)  
+  productVariants   ProductVariant[]
+  hasVariants Boolean   @default(false)
+  showInSite Boolean   @default(true)
+  cartItems   CartItem[] 
+  orderItems  OrderItem[]
+  onSale      Boolean   @default(false)
+  isNew       Boolean   @default(false)
+  isFeatured  Boolean   @default(false)
+  images      String[]
+  stock       Int
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt
+  deletedAt   DateTime?
+
+  @@map("products")
+}
+
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+  DISCONTINUED
+}
+
+model ProductVariant {
+  id          String          @id @default(uuid())
+  productId   String
+  product     Product         @relation(fields: [productId], references: [id])
+  colorId     String?
+  color       Color?          @relation(fields: [colorId], references: [id])
+  sizeId      String?
+  size        Size?           @relation(fields: [sizeId], references: [id])
+  sku         String          
+  upc         String?
+  stock       Int
+  price       Float
+  images      String[]
+  status      ProductStatus   @default(ACTIVE)
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime?       @updatedAt
+  deletedAt   DateTime?
+
+  @@map("product_variants")
+}
+
+
+
+model Address {
+  id         String    @id @default(uuid())
+  userId     String
+  street     String    @map("street")
+  number     Int       @map("number")
+  complement String?   @map("complement")
+  city       String    @map("city")
+  state      String    @map("state")
+  country    String    @map("country")
+  zipCode    String    @map("zip_code")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime? @updatedAt @map("updated_at")
+  user       User      @relation(fields: [userId], references: [id])
+
+  @@map("addresses")
+}
+
+model Color {
+  id    String @id @default(uuid())
+  name  String  @unique
+  hex   String
+  erpId      String?
+  productColors ProductColor[]
+  productVariants ProductVariant[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  
+  
+
+  @@map("colors")
+}
+
+model ProductColor {
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  colorId   String
+  color     Color   @relation(fields: [colorId], references: [id])
+
+  @@id([productId, colorId])
+  @@map("product_colors")
+}
+
+model Size {
+  id       String        @id @default(uuid())
+  name     String        @unique
+  productSizes ProductSize[]
+  erpId      String?
+  productVariants ProductVariant[] 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("sizes")
+}
+
+model ProductSize {
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  sizeId    String
+  size      Size    @relation(fields: [sizeId], references: [id])
+
+  @@id([productId, sizeId])
+  @@map("product_sizes")
+}
+
+model Category {
+  id       String  @id @default(uuid())
+  name     String   @unique
+  imageUrl  String
+  productCategories ProductCategory[]
+  erpId      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("categories")
+}
+
+model ProductCategory {
+  productId   String
+  product     Product @relation(fields: [productId], references: [id])
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+
+  @@id([productId, categoryId])
+  @@map("product_categories")
+}
+
+
+
+model Brand {
+  id       String    @id @default(uuid())
+  name     String     @unique
+  imageUrl  String?
+  erpId      String?
+  products Product[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("brands")
+}
+
+model Cart {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  shipping        Shipping? @relation(fields: [shippingId], references: [id])
+  shippingId      String? @unique
+  collection_id String?
+  merchant_order_id String?
+
+  paymentIntentId String?   
+  paymentStatus  String?  
+
+  orderId     String?
+
+
+  @@map("carts")
+}
+
+model CartItem {
+  id          String  @id @default(uuid())
+  productName String
+  imageUrl    String
+  cartId      String
+  cart        Cart    @relation(fields: [cartId], references: [id])
+  productId   String
+  product     Product @relation(fields: [productId], references: [id])
+  quantity    Int
+  price       Float
+  height      Float
+  width       Float
+  length      Float
+  weight      Float
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt @map("updated_at")
+  colorId     String?
+  sizeId      String?
+  hasVariants Boolean   @default(false)
+  
+
+  @@map("cart_items")
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  customerId  String?
+  customer    Customer?   @relation(fields: [customerId], references: [id]) 
+  items       OrderItem[]
+  status      OrderStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime?   @updatedAt
+  shippings   Shipping[]
+  paymentId      String?  @unique 
+  paymentStatus  String?             
+  paymentMethod  String?             
+  paymentDate    DateTime?
+  cartId      String?
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id         String    @id @default(uuid())
+  orderId    String
+  productName String
+  order      Order     @relation(fields: [orderId], references: [id])
+  productId  String
+  imageUrl    String
+  product    Product   @relation(fields: [productId], references: [id])
+  quantity   Int
+  price      Float
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
+
+  @@map("order_items")
+}
+
+
+
+model Shipping {
+  id             String     @id @default(uuid())
+  userId         String
+  name           String
+  orderId        String?
+  cartId         String 
+  service        String?
+  trackingCode   String?
+  shippingCost   Float
+  deliveryTime   Int        
+  status         ShippingStatus @default(PENDING)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime?  @updatedAt
+
+  user           User       @relation(fields: [userId], references: [id])
+  order          Order?      @relation(fields: [orderId], references: [id])
+  cart           Cart?
+  @@map("shippings")
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+enum ShippingStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model ArchivedCart {
+  id              String        @id @default(uuid())
+  cartId          String
+  userId          String
+  user            User          @relation(fields: [userId], references: [id])
+  items           ArchivedCartItem[]
+  createdAt       DateTime      @default(now())
+  archivedAt      DateTime      @default(now())
+  paymentIntentId String?
+  paymentStatus   String?
+  collection_id   String?
+  merchant_order_id String?
+
+  @@map("archived_carts")
+}
+
+model ArchivedCartItem {
+  id          String        @id @default(uuid())
+  productName String
+  imageUrl    String
+  cartId      String
+  cart        ArchivedCart  @relation(fields: [cartId], references: [id])
+  productId   String
+  quantity    Int
+  price       Float
+  height      Float
+  width       Float
+  length      Float
+  weight      Float
+  colorId     String?
+  sizeId      String?
+  hasVariants Boolean       @default(false)
+
+  @@map("archived_cart_items")
+}
+
