@@ -7,7 +7,7 @@ import { JwtStrategy } from "./jwt.strategy";
 
 import { JwtAuthGuard } from "./jwt-auth.guard";
 import { JwtResetPasswordService } from "./jwtReset.strategy";
-import { AuthMelhorEnvioUseCase } from "../domain/order/application/use-cases/melhor-envio-auth";
+
 import { RolesGuard } from "./roles.guard";
 @Module({
     imports: [
@@ -47,14 +47,14 @@ import { RolesGuard } from "./roles.guard";
         JwtStrategy,
         JwtAuthGuard,
         JwtResetPasswordService,
-        AuthMelhorEnvioUseCase,
+
         RolesGuard,
     ],
     exports: [
         JwtAuthGuard,
         JwtModule,
         JwtResetPasswordService,
-        AuthMelhorEnvioUseCase,
+
         RolesGuard,
     ],
 })

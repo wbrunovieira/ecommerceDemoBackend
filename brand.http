@@ -1,4 +1,5 @@
-@BASE_URL = https://styloslingerie.com.br/api
+// brand.http
+@BASE_URL = http://localhost:3333
 @AUTH_TOKEN = {{authenticate.response.body.access_token}}
 
 # @name authenticate
@@ -18,24 +19,19 @@ Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 
 {
-  "name": "Brand for testess",
+  "name": "Brand for testess2",
   "imageUrl": "/icons/no-photos.svg",
   "erpId":"10000"
   
 }
 
-###
-
-# @name get-brands
-GET  {{BASE_URL}}/brands
-Content-Type: application/json
-
 
 ###
 
 # @name delete-brands
-Delete  {{BASE_URL}}/brands/270d50a6-1f97-43e1-96b7-8e909a67cf79
+Delete  {{BASE_URL}}/brands/0369c0a6-308c-45fc-80cf-5514c3abd1d0
 Content-Type: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
 
 ###
 
@@ -54,22 +50,16 @@ Authorization: Bearer {{AUTH_TOKEN}}
 
 ###
 
-# @name delete-brands
-Delete  {{BASE_URL}}/brands/0a808470-4977-412a-a9a4-521aca95e84f
-Content-Type: application/json
-Authorization: Bearer {{AUTH_TOKEN}}
-
-###
 
 # @name find-brand-by-id
-GET  {{BASE_URL}}/brands/0a808470-4977-412a-a9a4-521aca95e84f
+GET  {{BASE_URL}}/brands/040fa9e6-7b3c-44e1-af71-701e8737d023
 Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 
 ###
 
 # @name edit-brand
-PUT  {{BASE_URL}}/brands/ad7be056-f43d-45c5-8ddd-93da748da4ea
+PUT  {{BASE_URL}}/brands/040fa9e6-7b3c-44e1-af71-701e8737d023
 Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 

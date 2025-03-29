@@ -1,3 +1,4 @@
+// src/main.ts
 import "module-alias/register";
 
 import { NestFactory } from "@nestjs/core";

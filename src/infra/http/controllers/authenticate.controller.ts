@@ -2,10 +2,7 @@ import {
     Body,
     ConflictException,
     Controller,
-    Get,
     HttpCode,
-    HttpException,
-    HttpStatus,
     Post,
     UnauthorizedException,
     UseGuards,
@@ -19,7 +16,7 @@ import { PrismaService } from "../../../prisma/prisma.service";
 import { compare, hash } from "bcryptjs";
 import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
 import { RolesGuard } from "@/auth/roles.guard";
-import { AuthMelhorEnvioUseCase } from "@/domain/order/application/use-cases/melhor-envio-auth";
+
 
 const autheticateBodySchema = z.object({
     email: z.string(),
@@ -44,7 +41,7 @@ type GenerateAuthUrlSchema = z.infer<typeof generateAuthUrlSchema>;
 export class AuthenticateController {
     constructor(
         private prisma: PrismaService,
-        private authMelhorEnvioUseCase: AuthMelhorEnvioUseCase,
+
 
         private jwt: JwtService
     ) {}
@@ -126,46 +123,8 @@ export class AuthenticateController {
         return { admin, accessToken };
     }
 
-    @Get("/melhor-envio/auth-url")
-    async getMelhorEnvioAuthUrl() {
-        const authUrl = this.authMelhorEnvioUseCase.generateAuthUrl();
-        console.log(" authUrl", authUrl);
-        return { authUrl };
-    }
+ 
 
-    @Post("refresh-token")
-    async refreshToken(@Body("refresh_token") refresh_token: string) {
-        if (!refresh_token) {
-            throw new HttpException(
-                "Authorization code is required",
-                HttpStatus.BAD_REQUEST
-            );
-        }
 
-        try {
-            const newToken =
-                await this.authMelhorEnvioUseCase.refreshToken(refresh_token);
-            return newToken;
-        } catch (error: any) {
-            throw new HttpException(error.message, error.status);
-        }
-    }
-
-    @Post("request-token")
-    async requestToken(@Body("code") code: string) {
-        if (!code) {
-            throw new HttpException(
-                "Authorization code is required",
-                HttpStatus.BAD_REQUEST
-            );
-        }
-
-        try {
-            const tokenData =
-                await this.authMelhorEnvioUseCase.requestToken(code);
-            return tokenData;
-        } catch (error: any) {
-            throw new HttpException(error.message, error.status);
-        }
-    }
+   
 }
