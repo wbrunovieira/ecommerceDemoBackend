@@ -6,7 +6,7 @@ POST {{BASE_URL}}/sessions
 Content-Type: application/json
 
 {
-  "email": "brunao@bruno.com",
+  "email": "wbrunovieira@yahoo.com.br",
   "password": "123456aA@"
 }
 
@@ -33,12 +33,12 @@ Authorization: Bearer {{AUTH_TOKEN}}
 
 
 # @name get-adress-by-userId
-GET {{BASE_URL}}/adress/by-user-id?userId=d5b8f38e-fc63-43f7-8ff6-7258347287e7
+GET {{BASE_URL}}/adress/by-user-id?userId=65ef6ca2-e014-4c3e-8aa9-b2ee82046354
 Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 
 {
-  "userId": "d5b8f38e-fc63-43f7-8ff6-7258347287e7"
+  "userId": "65ef6ca2-e014-4c3e-8aa9-b2ee82046354"
   
 }
 

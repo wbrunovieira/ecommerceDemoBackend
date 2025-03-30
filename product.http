@@ -1,5 +1,5 @@
 
-@BASE_URL = https://api.styloslingerie.com.br/api
+@BASE_URL = http://localhost:3333
 @AUTH_TOKEN = {{authenticate.response.body.access_token}}
 
 
@@ -27,8 +27,8 @@ Authorization: Bearer {{AUTH_TOKEN}}
   "name": "blusa testes6",
   "description": "calcinha description 1 mais texto, legal, muiito legal" ,
   "images": ["/images/foto1.jpg"],
- "productCategories": ["fde0cc9e-076e-4082-b15d-0647b2ade093"],
-  "brandId": "fc3d91eb-1198-49d6-9017-fbf9179d1737",
+ "productCategories": ["53b2af1c-38a2-4f81-94e9-29e3cf8365d7"],
+  "brandId": "040fa9e6-7b3c-44e1-af71-701e8737d023",
   "sku":"12121212aa",
   "price": 100,
   "stock": 10,

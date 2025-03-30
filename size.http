@@ -1,4 +1,4 @@
-@BASE_URL = https://wbstylosbackend.sa.ngrok.io
+@BASE_URL = http://localhost:3333
 
 @AUTH_TOKEN = {{authenticate.response.body.access_token}}
 
@@ -26,14 +26,10 @@ Authorization: Bearer {{AUTH_TOKEN}}
 
 ###
 
-# @name get-size
-GET  {{BASE_URL}}/size
-Content-Type: application/json
 
-###
 
 # @name delete-size
-Delete  {{BASE_URL}}/size/022220c0-2995-4e31-8a53-c52fa5c683f4
+Delete  {{BASE_URL}}/size/c8d54ee5-28ed-4e19-9340-a63682fb1c4f
 Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 
@@ -41,14 +37,14 @@ Authorization: Bearer {{AUTH_TOKEN}}
 ###
 
 # @name find-size-by-id
-GET  {{BASE_URL}}/size/510433f1-6eb0-43e9-96bb-1f75ab5f65e1
+GET  {{BASE_URL}}/size/8f9d5869-ca6c-4bf6-81f9-e3bdf9fd8b19
 Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 
 ###
 
 # @name edit-size
-PUT  {{BASE_URL}}/size/88864ced-ec77-4034-a728-4519e71943f4
+PUT  {{BASE_URL}}/size/8f9d5869-ca6c-4bf6-81f9-e3bdf9fd8b19
 Content-Type: application/json
 
 {

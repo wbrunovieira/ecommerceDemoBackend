@@ -1,4 +1,4 @@
-@BASE_URL =  https://wbstylosbackend.sa.ngrok.io
+@BASE_URL = http://localhost:3333
 @AUTH_TOKEN = {{authenticate.response.body.access_token}}
 
 

@@ -27,7 +27,7 @@ import { DeleteItemFromCartUseCase } from "@/domain/order/application/use-cases/
 import { GetCartByUserUseCase } from "@/domain/order/application/use-cases/get-Cart-ByUserId";
 import { UpdateItemQuantityInCartUseCase } from "@/domain/order/application/use-cases/update-quantity-item";
 import { CalculateShipmentUseCase } from "@/domain/order/application/use-cases/calculate-shipping";
-import { MercadoPagoService } from "@/domain/order/application/use-cases/payment.service";
+
 
 const createCartSchema = z.object({
     userId: z.string(),
@@ -128,7 +128,7 @@ export class CartController {
         private getCartByUserUseCase: GetCartByUserUseCase,
         private calculateshipment: CalculateShipmentUseCase,
         private updateItemQuantityInCartUseCase: UpdateItemQuantityInCartUseCase,
-        private mercadoPagoService: MercadoPagoService
+
     ) {}
 
     @Post()
@@ -356,35 +356,5 @@ export class CartController {
         return result;
     }
 
-    @Post("/create-preference")
-    async createPreference(
-        @Body(createPreferenceValidationPipe) body: CreatePreferenceSchema
-    ) {
-        try {
-            console.log("entrou /create-preference");
-            console.log("entrou /create-preference body", body);
-            const items = [
-                {
-                    id: body.id,
-                    title: body.description,
-                    unit_price: body.price,
-                    quantity: body.quantity,
-                },
-            ];
-            console.log("entrou /create-preference items", items);
-            const response = await this.mercadoPagoService.createPreference(
-                body.cartId,
-                items
-            );
 
-            console.log("entrou /create-preference response", response);
-            return response;
-        } catch (error) {
-            console.error("Erro ao criar preferência no MercadoPago:", error);
-            throw new HttpException(
-                "Failed to create preference",
-                HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }
-    }
 }

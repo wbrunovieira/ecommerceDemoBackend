@@ -1,7 +1,7 @@
 import { ResourceNotFoundError } from "@/domain/catalog/application/use-cases/errors/resource-not-found-error";
 import { SaveShippingUseCase } from "@/domain/order/application/use-cases/create-shipping";
 import { FindCartByPreferenceIdUseCase } from "@/domain/order/application/use-cases/find-cart-bt-preferenceId";
-import { MercadoPagoService } from "@/domain/order/application/use-cases/payment.service";
+
 import { ZodValidationsPipe } from "@/pipes/zod-validations-pipe";
 
 import {
@@ -63,7 +63,7 @@ type MercadoPagoWebhookSchema = z.infer<typeof mercadoPagoWebhookSchema>;
 export class ShippingController {
     constructor(
         private readonly saveShippingUseCase: SaveShippingUseCase,
-        private mercadoPagoService: MercadoPagoService,
+
         private findCart: FindCartByPreferenceIdUseCase
     ) {}
 
@@ -186,18 +186,6 @@ export class ShippingController {
             console.log("Live Mode:", live_mode);
             console.log("Type:", type);
             console.log("User ID:", user_id);
-
-            await this.mercadoPagoService.validateSignature(
-                body,
-                xSignature,
-                xRequestId
-            );
-
-            await this.mercadoPagoService.processWebhookNotification(
-                body,
-                dataId,
-                type
-            );
 
             return {
                 statusCode: HttpStatus.CREATED,

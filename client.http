@@ -7,36 +7,19 @@
 POST {{BASE_URL}}/sessions
 Content-Type: application/json
 
-{
-  "email": "wbrunovieira@yahoo.com.br",
-  "password": "123456aA@"
-}
-
 # {
-#   "email": "admin@example.com",
-#   "password": "Adminpassword@8"
+#   "email": "wbrunovieira@yahoo.com.br",
+#   "password": "123456aA@"
 # }
 
-###
-# @name get-uri-melhor-envio
-GET {{BASE_URL}}/sessions/melhor-envio/auth-url
-Content-Type: application/json
-
-###
-# @name authenticate-melhor-envio
-POST {{BASE_URL}}/sessions/request-token
-Content-Type: application/json
-
 {
-  "grant_type": "authorization_code",
-  "client_id": "YOUR_CLIENT_ID",
-  "client_secret": "YOUR_CLIENT_SECRET",
-  "redirect_uri": "YOUR_REDIRECT_URI",
-  "code": "AUTHORIZATION_CODE"
+  "email": "admin@example.com",
+  "password": "Adminpassword@8"
 }
 
-
 ###
+
+
 
 
 # @name create-account
@@ -45,7 +28,7 @@ Content-Type: application/json
 
 {
   "name": "Walter Bruno Prado Vieira",
-  "email": "wbrunovieira@yahoos.com.br",
+  "email": "wbrunovieira@yahoo.com.br",
   "password":"123456aA@"
 }
 
@@ -54,7 +37,7 @@ Content-Type: application/json
 
 
 # @name update-account
-PUT  {{BASE_URL}}/accounts/edit/8e30f012-2ce4-4c78-a8bf-7e5396874b1a
+PUT  {{BASE_URL}}/accounts/edit/3d31be75-1c07-47c0-9282-a6b9f3647a49
 Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 
@@ -76,7 +59,7 @@ Content-Type: application/json
 ###
 ###
 # @name get-account-by-id
-GET {{BASE_URL}}/accounts/8e30f012-2ce4-4c78-a8bf-7e5396874b1a
+GET {{BASE_URL}}/accounts/3d31be75-1c07-47c0-9282-a6b9f3647a49
 Content-Type: application/json
 
 
@@ -108,7 +91,7 @@ POST {{BASE_URL}}/accounts/check
 Content-Type: application/json
 
 {
-  "email": "wbrunovieira@yahoo.com.br"
+  "email": "brunao2@bruno.com"
 }
 
 
