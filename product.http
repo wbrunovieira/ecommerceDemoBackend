@@ -126,7 +126,7 @@ Content-Type: application/json
 ###
 
 # @name delete-product
-DELETE {{BASE_URL}}/products/c022b6ef-9c8e-41a8-8555-9d7d4ef44c1c
+DELETE {{BASE_URL}}/products/fecf67da-8e85-489e-b1fa-307974f9d7c1
 Content-Type: application/json
 Authorization: Bearer {{AUTH_TOKEN}}
 
